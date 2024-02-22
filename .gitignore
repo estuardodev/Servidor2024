@@ -1,6 +1,5 @@
 ### Mis archivos ignorados ###
 ServiorDjango/static/
-migrations/
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,python,csharp,aspnetcore,visualstudiocode,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python,csharp,aspnetcore,visualstudiocode,visualstudio
