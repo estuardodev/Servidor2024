@@ -1,0 +1,78 @@
+.custom-content p,
+.custom-content h1,
+.custom-content h2,
+.custom-content h3,
+.custom-content h4,
+.custom-content h5,
+.custom-content h6,
+.custom-content a {
+    color: #FFFFFF; /* Cambiar color del texto a blanco */
+}
+
+.custom-content p {
+    font-size: 16px; /* Tamaño de fuente para los párrafos */
+}
+
+.custom-content h1 {
+    font-size: 2.5rem; /* Tamaño de fuente para h1 */
+    color: #FF6B6B; /* Rojo vivo para h1 */
+}
+
+.custom-content h2 {
+    font-size: 2rem; /* Tamaño de fuente para h2 */
+    color: #64FFDA; /* Cian para h2 */
+}
+
+.custom-content h3 {
+    font-size: 1.75rem; /* Tamaño de fuente para h3 */
+    color: #FFD700; /* Amarillo para h3 */
+}
+
+.custom-content h4 {
+    font-size: 1.5rem; /* Tamaño de fuente para h4 */
+    color: #BB86FC; /* Violeta para h4 */
+}
+
+.custom-content h5 {
+    font-size: 1.25rem; /* Tamaño de fuente para h5 */
+    color: #FDB813; /* Naranja para h5 */
+}
+
+.custom-content h6 {
+    font-size: 1rem; /* Tamaño de fuente para h6 */
+    color: #03DAC6; /* Cian brillante para h6 */
+}
+
+.custom-content a {
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    color: #6200EE; /* Morado para enlaces */
+}
+
+.custom-content table {
+    width: 100%; /* Ancho del 100% para la tabla */
+    border-collapse: collapse; /* Colapsar bordes de celda */
+    color: white;
+}
+
+.custom-content th,
+.custom-content td {
+    border: 1px solid #FFFFFF; /* Borde blanco para celdas */
+    padding: 8px; /* Espaciado interno en celdas */
+}
+
+.custom-content ul,
+.custom-content ol {
+    margin-left: 20px; /* Margen izquierdo para listas */
+}
+
+.custom-content strong {
+    color: #FFC107; /* Amarillo brillante para texto en negrita */
+}
+
+.custom-content blockquote, .custom-content blockquote p{
+    color: bisque;
+}
+
+.custom-content blockquote a, .custom-content blockquote p a{
+    color: #6200EE;
+}

@@ -1,0 +1,22 @@
+﻿body {
+    background-color: #f8f9fa;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    scrollbar-color: blue lightblue;
+}
+
+.container {
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+}
+
+.iconos{
+    scrollbar-color: blue lightblue;
+}

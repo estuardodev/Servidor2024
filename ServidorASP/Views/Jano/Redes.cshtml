@@ -1,0 +1,27 @@
+﻿@{
+    var redes = ViewBag.Redes as IEnumerable<ServidorASP.Models.RedesSocialesJano>;
+}
+<div class="container">
+    <h1>Redes Sociales de Jano Abonce</h1>
+    <div class="row">
+        @if (redes != null){
+        @foreach(var red in redes){
+        <div class="col-md-4">
+            <div class="social-box">
+                <div class="overlay">
+                    <a href="@red.EnlaceRedSocial" class="social-icon" target="_blank">
+                        <img src="/media/@red.IconoRedSocial" alt="@red.NombreRedSocial Icono">
+                    </a>
+                </div>
+                        <img src="/media/@red.ImagenFondoRedSocial" alt="@red.NombreRedSocial" class="background-image">
+            </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            <p>No hay redes sociales que mostrar.</p>
+        }
+    </div>
+</div>

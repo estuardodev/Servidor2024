@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Legal";
+
+    var cookie = ViewBag.Cookies as ServidorASP.Models.Cookie;
+
+    ViewData["Descripcion"] = "Te recomendamos leer nuestras Cookies";
+    ViewData["Claves"] = "Política de cookies de Estuardo Ramírez";
+    ViewData["Title"] = "Política de Cookies";
+    if (cookie == null)
+    {
+        ViewData["Propietario"] = "Desconocido";
+    }
+    else
+    {
+        ViewData["Propietario"] = cookie.NombrePropietario;
+    }
+    
+}
+
+<div class="custom-content">
+    <div class="container-m">
+        @if (cookie == null)
+        {
+            <p>NO HAY INFORMACIÓN</p>
+        }
+        else
+        {
+            @Html.Raw(cookie.Contenido)
+        }
+        
+        <br>
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span class="font-medium">Estuardo Ramírez,</span> se reserva el derecho de cambiar los Términos y Condiciones, Políticas de Privacidad y Políticas de Cookies en cualquier momento.
+        </div>
+    </div>
+</div>

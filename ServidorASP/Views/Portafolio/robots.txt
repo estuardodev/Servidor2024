@@ -1,0 +1,7 @@
+﻿User-Agent: *
+Disallow: /terceros
+Disallow: /terceros/
+Disallow: /legal/*
+
+
+Sitemap: https://estuardo.dev/sitemap.xml

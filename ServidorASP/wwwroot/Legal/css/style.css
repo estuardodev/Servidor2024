@@ -1,0 +1,89 @@
+﻿.container-m {
+    padding: 1cm 5cm 2cm 5cm;
+}
+
+@media (max-width: 768px) {
+    .container-m {
+        padding: 0.5rem; /* Ajustar el relleno para dispositivos más pequeños */
+    }
+}
+
+.custom-content p,
+.custom-content h1,
+.custom-content h2,
+.custom-content h3,
+.custom-content h4,
+.custom-content h5,
+.custom-content h6,
+.custom-content a {
+    color: #0100; /* Cambiar color del texto a blanco */
+}
+
+.custom-content p {
+    font-size: 16px; /* Tamaño de fuente para los párrafos */
+    color: black;
+}
+
+.custom-content h1 {
+    font-size: 2.5rem; /* Tamaño de fuente para h1 */
+    color: #130068; /* Rojo vivo para h1 */
+}
+
+.custom-content h2 {
+    font-size: 2rem; /* Tamaño de fuente para h2 */
+    color: #fc3a20; /* Cian para h2 */
+}
+
+.custom-content h3 {
+    font-size: 1.75rem; /* Tamaño de fuente para h3 */
+    color: rgb(255, 32, 225); /* Amarillo para h3 */
+}
+
+.custom-content h4 {
+    font-size: 1.5rem; /* Tamaño de fuente para h4 */
+    color: #2c2b2c; /* Violeta para h4 */
+}
+
+.custom-content h5 {
+    font-size: 1.25rem; /* Tamaño de fuente para h5 */
+    color: black; /* Naranja para h5 */
+}
+
+.custom-content h6 {
+    font-size: 1rem; /* Tamaño de fuente para h6 */
+    color: #000000; /* Cian brillante para h6 */
+}
+
+.custom-content a {
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    color: #6200EE; /* Morado para enlaces */
+}
+
+.custom-content table {
+    width: 100%; /* Ancho del 100% para la tabla */
+    border-collapse: collapse; /* Colapsar bordes de celda */
+    color: black;
+}
+
+.custom-content th,
+.custom-content td {
+    border: 1px solid black; /* Borde blanco para celdas */
+    padding: 8px; /* Espaciado interno en celdas */
+}
+
+.custom-content ul,
+.custom-content ol {
+    margin-left: 20px; /* Margen izquierdo para listas */
+}
+
+.custom-content strong {
+    color: #00ad74; /* Amarillo brillante para texto en negrita */
+}
+
+.custom-content blockquote, .custom-content blockquote p {
+    color: black;
+}
+
+    .custom-content blockquote a, .custom-content blockquote p a {
+        color: #6200EE;
+    }

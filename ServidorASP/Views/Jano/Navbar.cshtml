@@ -1,0 +1,27 @@
+﻿@{
+    var informacion = ViewBag.Informacion as ServidorASP.Models.InformacionJano;
+}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFC1C1;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Jano Abonce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                <a class="nav-link" href="#quien_soy">¿Quién soy?</a>
+            </div>
+        </div>
+    </div>
+</nav>
+@if(informacion != null)
+{
+    
+    <img src="~/media/@informacion.Portada" class="img-fluid">
+}
+else
+{
+    <p>No hay imagen que mostrar</p>
+}

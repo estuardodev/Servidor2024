@@ -1,0 +1,23 @@
+﻿@{
+    var certifications = ViewBag.Certifications as IEnumerable<ServidorASP.Models.PortafolioCertificacione>;
+
+}
+<section class=" px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300 ">Certificaciones</h2>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Estas son algunas certificaciones de los cursos con los cuales me he ido formando como desarrollador backend.</p>
+    <br />
+    <div class="flex overflow-x-auto">
+        @foreach(var certification in certifications){
+        <div class="flex-shrink-0 w-64 mx-4">
+            <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
+                <a href="@certification.Enlace" target="_blank">
+                        <img class="rounded-t-lg h-56 w-full object-cover object-center" src="~/media/@certification.Imagen" alt="@certification.Titulo">
+                </a>
+                <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                        <p>@certification.Titulo</p>
+                </figcaption>
+            </figure>
+        </div>
+        }
+    </div>
+</section>

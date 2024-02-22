@@ -1,0 +1,29 @@
+﻿@{
+    var informacion = ViewBag.Informacion as ServidorASP.Models.InformacionJano;
+}
+
+<div></div>
+@if (informacion != null){
+<section id="content">
+    <div class="container">
+        <h4 class="card-title">¿Quién soy?</h4>
+        <p class="lh-1 flex-grow-1 ms-3"><b>@informacion.Frase</b></p>
+        <hr>
+        <h1 class="titles">Jano Abonce</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="justify-content-center align-items-center">
+                    @Html.Raw(informacion.Texto)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-md-end">
+                    <img src="~/media/@informacion.Imagen" alt="Imagen de Jano" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+} else{
+<p>NADA QUE MOSTRAR</p>
+}

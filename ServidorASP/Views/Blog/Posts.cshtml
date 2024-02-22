@@ -1,0 +1,190 @@
+﻿@{
+    var articulos = ViewBag.Paquete as IEnumerable<ServidorASP.Models.Articulo>;
+    var populares = ViewBag.Populares as IEnumerable<ServidorASP.Models.Articulo>;
+    var busqueda = ViewBag.Search as IEnumerable<ServidorASP.Models.Articulo>;
+}
+
+<br>
+@if (ViewBag.ActivePosts && busqueda == null)
+{
+    <h1 class="text-6xl text-gray-800 dark:text-white">Posts</h1>
+}
+else if (ViewBag.ActiveTendencia != null && busqueda == null)
+{
+    <h1 class="text-6xl text-gray-800 dark:text-white">Tendencias</h1>
+}
+else if (ViewBag.ActiveReciente != null && busqueda == null)
+{
+    <h1 class="text-6xl text-gray-800 dark:text-white">Recientes</h1>
+}
+
+<hr>
+<br>
+
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="col-span-2 p-4 dark:bg-gray-800">
+
+        @if (articulos != null && busqueda == null){
+        <div class="inline-flex rounded-md shadow-sm" role="group">
+            <form role="filter" method="GET">
+                <button name="filter" value="posts" type="submit"
+                        class="px-4 py-2 text-sm font-medium text-gray-800 rounded-l-lg hover:bg-gray-800 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-800 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700
+                        @(ViewBag.ActivePosts && ViewBag.ActivePosts != null ? "border bg-gray-600 text-white" : "border bg-transparent text-gray-6000")">
+                    Publicaciones
+                </button>
+            </form>
+            <form role="filter" method="GET">
+                <button name="filter" value="tendencias" type="submit"
+                        class="px-4 py-2 text-sm font-medium text-gray-800  hover:bg-gray-800 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-800 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700
+                        @(ViewBag.ActiveTendencia && ViewBag.ActiveTendencia != null?"border bg-gray-600 text-white": "bg-transparent border-t border-b border-gray-800")">
+                    Tendencias
+                </button>
+            </form>
+            <form role="filter" method="GET">
+                <button name="filter" value="recent" type="submit"
+                        class="px-4 py-2 text-sm font-medium text-gray-800  rounded-r-md hover:bg-gray-800 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-800 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700
+                        @(ViewBag.ActiveReciente && ViewBag.ActiveReciente != null?"border bg-gray-600 text-white" : "border bg-transparent border-gray-800")">
+                    Recientes
+                </button>
+            </form>
+            </div>
+        }
+        else
+        {
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl text-gray-800 dark:text-white">Resultados de la búsqueda</h2>
+
+                <form role="filter" method="GET">
+                    <button name="filter" value="posts" type="submit"
+                            class="px-4 py-2 text-sm font-medium
+                       text-gray-800 rounded-l-lg
+                       hover:bg-gray-800 hover:text-white
+                       focus:z-10 focus:ring-2 focus:ring-gray-500
+                       focus:bg-gray-800 focus:text-white
+                       dark:border-white dark:text-white
+                       dark:hover:text-white dark:hover:bg-gray-700
+                       dark:focus:bg-gray-700
+                       @(ViewBag.ActivePosts != null && ViewBag.ActivePosts ? "border bg-gray-600 text-white" : "border bg-transparent text-gray-600")">
+                        Regresar
+                    </button>
+                </form>
+            </div>
+
+
+        }
+        <hr>
+        <br>
+
+        <!-- Contenido de la primera columna (Posts) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            @if (articulos != null && busqueda == null)
+            {
+                foreach(var articulo in articulos)
+                {
+                    <article>
+                        <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <a href="@articulo.RealUrl()" class="block overflow-hidden">
+                                <img class="w-full h-auto transition-all duration-300 rounded-t-lg cursor-pointer filter grayscale hover:grayscale-0 object-cover object-center" src="~/media/@articulo.Image" alt="@articulo.Titulo" style="max-height: 300px;" />
+                            </a>
+                            <div class="p-4">
+                                <a href="@articulo.RealUrl()">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white truncate">@articulo.Titulo</h5>
+                                </a>
+                                <p class="mb-2 text-sm text-gray-700 dark:text-gray-400 truncate">@articulo.Descripcion</p>
+                                <div class="flex items-center mb-2 space-x-2 flex-col sm:flex-row">
+                                    <a href="@articulo.RealUrl()" class="inline-flex items-center text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-3 py-2">
+                                        Leer más...
+                                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </a>
+                                    <p class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400 mt-2 sm:mt-0">
+                                        ⏱ @articulo.CalcularTiempoLectura() Minuto@(articulo.CalcularTiempoLectura() != 1 ? "s" : "") de lectura
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </article>
+                }
+            }
+            @if(busqueda != null){
+            <div class="relative col-span-2 p-4 dark:bg-gray-800 overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-800  uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Busqueda
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Fecha
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @if (!(ViewBag.Search is string) || ViewBag.Search != "No")
+                            {
+                        @foreach(var resultado in busqueda){
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-3 max-w-xs truncate text-center">@resultado.Id</th>
+                            <td class="px-6 py-3 max-w-xs truncate font-medium text-gray-800 whitespace-nowrap dark:text-white"><a href="@resultado.RealUrl()" class="hover:underline">@resultado.Titulo</a></td>
+                            <td class="px-6 py-3 max-w-xs truncate">@resultado.FechaHoraCreacion</td>
+                                </tr>
+                                }
+                            } else
+                            {
+                                
+                            
+                            <tr>
+                            <td colspan="3">No se encontraron elementos.</td>
+                        </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="pad-l">
+        <div class="col-span-1 p-4 dark:bg-gray-700">
+            <!-- Contenido de la segunda columna (Posts Populares) -->
+            <div class="flex justify-center">
+                <div class="max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-6">
+                        <h2 class="text-4xl text-gray-800 dark:text-white text-center">Posts populares</h2>
+                        <hr class="my-2">
+                        @if (populares != null){
+                        <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                            @foreach(var popular in populares){
+                            <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <div class="p-6">
+                                    <a href="@popular.RealUrl()">
+                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white truncate">@popular.Titulo</h5>
+                                    </a>
+                                    <p class="mb-3 text-sm text-gray-700 dark:text-gray-400 truncate">@popular.Descripcion</p>
+                                            <a href="@popular.RealUrl()" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Leer más..
+                                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                                }
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,58 @@
+﻿@{
+    var articulo = ViewBag.ArticuloRender as ServidorASP.Models.Articulo;
+}
+
+<article>
+    <div class="grid grid-cols-1 gap-4 mb-4">
+        <div class="h-auto max-w-lg mx-auto">
+
+            <div>
+                <figure class="max-w-lg mx-auto text-center">
+                    <img class="h-auto max-w-full rounded-lg mx-auto" src="~/media/@articulo.Image" alt="@articulo.Descripcion" style="max-height: 400px;">
+                    <figcaption class="mt-2 text-sm text-gray-500 dark:text-gray-400">@articulo.DescripcionImagen</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="grid grid-cols-1 gap-4 mb-4">
+        <div class="grid grid-cols-2 gap-4 mb-4 items-center">
+            <h1 class="text-2xl font-bold text-white">@articulo.Titulo</h1>
+            <div class="flex items-center justify-end">
+                <a class="like-button" data-article-id="@articulo.Id">
+                    <svg class="w-[24px] h-[24px] text-gray-300 dark:text-white like-empty-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.008 8.714c1-.097 1.96-.45 2.792-1.028a25.112 25.112 0 0 0 4.454-5.72 1.8 1.8 0 0 1 .654-.706 1.742 1.742 0 0 1 1.65-.098 1.82 1.82 0 0 1 .97 1.128c.075.248.097.51.065.767l-1.562 4.629M4.008 8.714H1v9.257c0 .273.106.535.294.728a.99.99 0 0 0 .709.301h1.002a.99.99 0 0 0 .71-.301c.187-.193.293-.455.293-.728V8.714Zm8.02-1.028h4.968c.322 0 .64.08.925.232.286.153.531.374.716.645a2.108 2.108 0 0 1 .242 1.883l-2.36 7.2c-.288.813-.48 1.354-1.884 1.354-2.59 0-5.39-1.06-7.504-1.66" />
+                    </svg>
+                    <svg class="w-6 h-6 text-gray-300 dark:text-white like-filled-icon hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                        <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
+                    </svg>
+                </a>
+                <span class="like-count ml-2 text-white">@articulo.Likes</span>
+            </div>
+        </div>
+        <hr>
+        <div class="mt-2">
+            <div class="grid grid-cols-2 gap-4 mb-4 items-center">
+                <span class="block text-yellow-400 publicado">Publicado: @articulo.FechaHoraCreacion horas</span>
+                <div class="flex items-center justify-end md:flex-row flex-col space-y-1 md:space-y-0 md:space-x-3">
+                    <!-- Añade espacio vertical en dispositivos móviles -->
+                    <p class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">👁 @articulo.Visitas Visita@(articulo.Visitas != 1 ? "s" : "")</p>
+
+                    @foreach (var categoria in articulo.ArticuloCategoria)
+                    {
+                        <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">@categoria.Categoria.Nombre</span>
+                    }
+
+                                                                                                                                                                                 
+                    <p class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400">⏱ @articulo.CalcularTiempoLectura() Minuto@(articulo.CalcularTiempoLectura() != 1 ? "s" : "") de lectura</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="custom-content">
+            @Html.Raw(articulo.Contenido)
+        </div>
+    </div>
+</article>  

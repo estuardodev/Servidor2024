@@ -1,0 +1,35 @@
+﻿@model ServidorASP.Models.PortafolioEmail
+@{
+    // Verificar si la cookie existe
+    var suscritoCookie = Context.Request.Cookies["suscrito"];
+
+    if (suscritoCookie == "true")
+    {
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span class="font-medium">Gracias por suscribirte al boletín electrónico.</span>  Para cancelar tu suscripción escribeme <a asp-controller="Portafolio" asp-action="Contacto" target="_blank" class="inline-flex items-center text-blue-600 hover:underline">aquí.</a>
+        </div>
+    }
+    else
+    {
+        <section id="boletin" class="lowbite">
+            <div class="max-w-sm mx-auto p-4 bg-white dark:bg-gray-800 rounded-md shadow-md dark:text-white">
+                <h2 class="text-2xl font-semibold mb-4">Únete a mi boletín electrónico</h2>
+                <p class="text-gray-600 mb-4 dark:text-gray-400">Recibe las últimas noticias y actualizaciones directamente en tu bandeja de entrada.</p>
+                <form class="max-w-sm mx-auto" action="/" method="post">
+                    <div class="mb-5">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electrónico</label>
+                        <input type="email" id="email" asp-for="EmailAddress" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@dominio.com" required>
+                    </div>
+                    <div class="flex items-start mb-5">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" asp-for="SubscribeToNewsletter" value="true" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+                        </div>
+                        <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto suscribirme el boletín electrónico</label>
+                    </div>
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Suscribirme</button>
+                </form>
+
+            </div>
+        </section>
+    }
+}

@@ -1,0 +1,82 @@
+input[type="checkbox"] {
+    display: none;
+  }
+  
+  label {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background: #ddd;
+    display: block;
+    border-radius: 30px;
+    position: relative;
+  }
+  
+  label:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 22px;
+    transition: 0.3s;
+  }
+  
+  input[type="checkbox"]:checked + label {
+    background: #666;
+  }
+  
+  input[type="checkbox"]:checked + label:before {
+    left: calc(100% - 4px);
+    transform: translateX(-100%);
+  }
+
+
+/* Modo oscuro */
+.dark-mode {
+    --bg-color: #333;
+    --text-color: #fff;
+    --link-color: #1abc9c;
+  }
+  
+  .dark-mode h1,
+  .dark-mode h2,
+  .dark-mode h3,
+  .dark-mode h4,
+  .dark-mode h5,
+  .dark-mode h6 {
+    color: var(--text-color);
+  }
+  
+  .dark-mode a {
+    color: var(--link-color);
+  }
+  
+  .dark-mode p {
+    color: var(--text-color);
+  }
+  
+  .dark-mode span {
+    color: var(--text-color);
+  }
+  
+  .dark-mode body, .dark, .card{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .dark-mode th, tr, thead {
+    color: var(--text-color);
+  }
+
+  .dark-mode .scrolldown{
+    background-color: #fff;
+    color: #000;
+  }
+
+.scrolldowndeac{
+  background-color: #000;
+  color: #fff;
+}

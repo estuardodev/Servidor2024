@@ -1,0 +1,140 @@
+﻿@{
+    var live = ViewBag.live;
+    var title = "";
+    var game_name = "";
+    var viewer_count = "";
+
+    var horas = 0;
+    var minutos = 0;
+    var segundos = 0;
+    if (live != null)
+    {
+        var jsonObject = live.RootElement;
+        var firstElement = jsonObject[0];
+        title = firstElement.GetProperty("title").GetString();
+        game_name = firstElement.GetProperty("game_name").GetString();
+        viewer_count = firstElement.GetProperty("viewer_count").GetInt32().ToString();
+        horas = @ViewBag.Tiempo.Item1;
+        minutos = @ViewBag.Tiempo.Item2;
+        segundos = @ViewBag.Tiempo.Item3;
+    }
+    else
+    {
+        live = null;
+    }
+
+}
+
+@if (live != null)
+{
+    
+
+<div class="container text-center"><h2>JANO ABONCE ESTÁ EN DIRECTO</h2></div>
+
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col text-start">
+                <h3 class="h3"><small class="text-body-secondary">@title</small></h3>
+            <h4 class="h4">Categoria: <small class="text-body-secondary">@game_name</small></h4>
+            <h4 class="h4">Viewers: <small class="text-body-secondary">@viewer_count</small></h4>
+            <h4 class="h4">Tiempo: <small id="tiempo" class="text-body-secondary"></small></h4>
+            <h4 class="h4">
+                    Tags:
+                    @foreach (var i in ViewBag.tags)
+                    {
+                        <span class="badge text-bg-primary">@i</span>
+                    }
+            </h4>
+            <h4 class="h4">Seguidores: <small class="text-body-secondary">@ViewBag.follows</small></h4>
+
+            <div class="text-center">
+                <iframe id="chat_embed"
+                        src="https://www.twitch.tv/embed/janoabonce/chat?parent=janoabonce.stream"
+                        height="500"
+                        width="350">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div id="ensamblar">
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Add a placeholder for the Twitch embed -->
+                <div id="twitch-embed"></div>
+
+                <!-- Load the Twitch embed script -->
+                <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+                <!-- Create a Twitch.Player object when the document is fully loaded -->
+                <script type="text/javascript">
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var userAgent = navigator.userAgent;
+
+                        // Verificar si el user agent indica que es un dispositivo móvil
+                        var esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+                        console.log(esMovil)
+                        if (esMovil) {
+                            new Twitch.Player("twitch-embed", {
+                                channel: "janoabonce",
+                                width: 356,
+                                height: 200,
+                            });
+                        } else {
+                            new Twitch.Player("twitch-embed", {
+                                channel: "janoabonce",
+                                width: 900,
+                                height: 480,
+                            });
+                        }
+                    });
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+}else{
+
+<div class="container text-center"><h2>JANO ABONCE NO ESTÁ EN DIRECTO</h2></div>
+
+}
+
+
+
+<script>
+    // Obtener el elemento donde se mostrará el tiempo
+    var tiempoElemento = document.getElementById("tiempo");
+
+    // Obtener los valores de horas, minutos y segundos
+    var horas = @horas;
+    var minutos = @minutos;
+    var segundos = @segundos;
+
+    // Función para actualizar el tiempo
+    function actualizarTiempo() {
+        // Añadir un cero delante de los números menores que 10 para mantener el formato
+        var horasStr = horas < 10 ? "0" + horas : horas;
+        var minutosStr = minutos < 10 ? "0" + minutos : minutos;
+        var segundosStr = segundos < 10 ? "0" + segundos : segundos;
+
+        // Mostrar el tiempo en el formato deseado
+        tiempoElemento.textContent = horasStr + ":" + minutosStr + ":" + segundosStr;
+
+        // Actualizar los valores de horas, minutos y segundos
+        segundos++;
+        if (segundos === 60) {
+            segundos = 0;
+            minutos++;
+            if (minutos === 60) {
+                minutos = 0;
+                horas++;
+            }
+        }
+    }
+
+    // Llamar a la función actualizarTiempo cada segundo
+    setInterval(actualizarTiempo, 1000);
+</script>

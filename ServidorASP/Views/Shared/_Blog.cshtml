@@ -1,0 +1,60 @@
+﻿@{
+    var username = "@esutardodev";
+    string absoluteUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+    string imageBlog = absoluteUrl + "Blog/img/blogdev.png";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Mantente actualizado con las últimas noticias y análisis de nuestro equipo técnico. Desde política hasta entretenimiento, cubrimos todo lo que necesitas saber en nuestro blog de noticias actualizado diariamente.">
+    <meta name="keywords" content="Blog Estuardo Ramirez, Noticias, Actualizaciones, Ultimas Noticias, Periodismo, Analisis, Informacion, Actualidad, Novedades, Reportajes, Articulos de noticias">
+    <link rel="apple-touch-icon" href="~/Blog/img/blogdev.png">
+    <link rel="icon" href="~/Blog/img/blogdev.png">
+    
+
+    <!--Formato para articulo en redes sociales-->
+    <meta property="og:title" content="estuardodev" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="@absoluteUrl" />
+    <meta property="og:image" content="@imageBlog  />
+    <meta property="og:description" content="Mantente actualizado con las últimas noticias y análisis de nuestro equipo técnico. Desde política hasta entretenimiento, cubrimos todo lo que necesitas saber en nuestro blog de noticias actualizado diariamente." />
+    <meta name="author" content="estuardodev">
+    <meta property="og:image:type" content="image/png">
+    <meta property="article:publisher" content="https://twitter.com/estuardodev">
+    <meta property="og:site_name" content="estuardodev">
+    <meta property="og:locale" content="es_GT">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@username">
+    <meta name="twitter:site" content="@username">
+    <meta name="twitter:label1" content="Autor">
+    <meta name="twitter:data1" content="@username">
+
+    <title>estuardodev</title>
+
+    <!--Flowbite-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <link rel="stylesheet" href="~/Blog/css/new_style.css">
+    <link rel="stylesheet" href="~/Blog/css/scroll.css">
+
+
+</head>
+<body>
+
+    @RenderBody();
+
+    <script src="~/Blog/js/modo_oscuro.js"></script>
+    <script src="~/Blog/js/cookies.js"></script>
+    <script src="~/Blog/js/alert.js"></script>
+    <script>
+        initializeCookieAlert();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
+</body>
+</html>

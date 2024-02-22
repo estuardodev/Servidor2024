@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Legal";
+
+    var terminos = ViewBag.Terminos as ServidorASP.Models.Termino;
+
+    ViewData["Descripcion"] = "Te recomendamos leer nuestros términos y condiciones";
+    ViewData["Claves"] = "Términos y Condiciones de Estuardo Ramírez";
+    ViewData["Title"] = "Términos y Condiciones";
+    if (terminos == null)
+    {
+        ViewData["Propietario"] = "Desconocido";
+    }
+    else
+    {
+        ViewData["Propietario"] = terminos.NombrePropietario;
+    }
+
+}
+
+<div class="custom-content">
+    <div class="container-m">
+        @if (terminos == null)
+        {
+            <p>NO HAY INFORMACIÓN</p>
+        }
+        else
+        {
+            @Html.Raw(terminos.Contenido)
+        }
+
+        <br>
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span class="font-medium">Estuardo Ramírez,</span> se reserva el derecho de cambiar los Términos y Condiciones, Políticas de Privacidad y Políticas de Cookies en cualquier momento.
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Portafolio | Estuardo Ramírez";
+    Layout = "_Portafolio";
+}
+
+<!-- Navbar -->
+<partial name="Navbar" />
+
+<div class="container mx-auto my-10">
+
+    <!-- About me -->
+    <section id="AboutMe">
+        <partial name="AboutMe" />
+    </section>
+
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> <br>
+
+    <!-- Projects -->
+    <section id="Projects">
+        <partial name="Projects" />
+    </section>
+
+    <br /> <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> <br />
+
+    <!-- This site -->
+    <section id="ThisSite">
+        <partial name="ThisSite" />
+    </section>
+
+    <br /> <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> <br />
+
+    <!-- Certifications-->
+    <section id="Certifications">
+        <partial name="Certifications" />
+    </section>
+
+</div>
+
+<br />
+<hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+
+<partial name="Boletin" />
+
+<hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+
+<!-- Footer -->
+<partial name="Footer" />
