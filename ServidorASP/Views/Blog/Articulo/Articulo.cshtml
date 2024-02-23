@@ -34,7 +34,7 @@
         <hr>
         <div class="mt-2">
             <div class="grid grid-cols-2 gap-4 mb-4 items-center">
-                <span class="block text-yellow-400 publicado">Publicado: @articulo.FechaHoraCreacion horas</span>
+                <span class="block text-yellow-400 publicado">Publicado: @articulo.FechaHoraCreacion?.ToString("dd/MM/yyyy HH:mm:ss") horas</span>
                 <div class="flex items-center justify-end md:flex-row flex-col space-y-1 md:space-y-0 md:space-x-3">
                     <!-- Añade espacio vertical en dispositivos móviles -->
                     <p class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">👁 @articulo.Visitas Visita@(articulo.Visitas != 1 ? "s" : "")</p>

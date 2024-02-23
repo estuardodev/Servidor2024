@@ -165,7 +165,7 @@
                             <a href="@articulo.RealUrl()" class="hover:underline">@articulo.Titulo</a>
                         </td>
                         <td class="px-6 py-4">
-                            @articulo.FechaHoraCreacion
+                                    @articulo.FechaHoraCreacion?.ToString("dd/MM/yyyy HH:mm:ss")
                         </td>
                         <td class="px-6 py-4">
                             @articulo.Visitas
