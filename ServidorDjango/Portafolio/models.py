@@ -7,7 +7,7 @@ from tinymce.models import HTMLField
 class Portafolio(models.Model):
     '''Aqui se almacena información de mi portafolio'''
     imagen = ResizedImageField(force_format="WEBP", quality=100, upload_to='images_portafolio/', null=True, blank=True, verbose_name="Imágen")
-    texto_largo = HTMLField(max_length=2000, null=False, verbose_name="Texto Largo")
+    texto_largo = models.TextField(max_length=2000, null=False, verbose_name="Texto Largo")
 
     class Meta:
         verbose_name = "Portafolio"
