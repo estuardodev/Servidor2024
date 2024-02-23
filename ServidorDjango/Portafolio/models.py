@@ -88,6 +88,10 @@ class Emails(models.Model):
     email_address = models.CharField(max_length=60, verbose_name="Dirección de correo", unique=True)
     subscribe_to_newsletter = models.BooleanField(default=False, verbose_name="Suscribirse al boletín")
 
+    class Meta:
+        verbose_name = "Email"
+        verbose_name_plural = "Emails"
+
 
 class EmailsEnviados(models.Model):
     _from = models.CharField(max_length=60, verbose_name="De", blank=False, null=False)

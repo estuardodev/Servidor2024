@@ -1,0 +1,36 @@
+name: Deploy-Django
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Activar entorno virtual y actualizar dependencias
+        run: |
+            source /Servidor2024/venv/bin/activate
+            python -m pip install --upgrade pip
+            cd /Servidor2024/ServidorDjango
+            pip install -r requirements.txt
+
+      - name: Ingresar por SSH y ejecutar comandos
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /Servidor2024/
+            git pull origin main
+            cd /Servidor2024/ServidorDjango
+            source /Servidor2024/venv/bin/activate
+            python3 manage.py collectstatic --no-input
+            python3 manage.py migrate
+            systemctl restart apache2
