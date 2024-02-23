@@ -29,6 +29,6 @@ jobs:
             cd /Servidor2024
             git pull origin master
             cd /Servidor2024/ServidorASP
-            dotnet publish -c Release --no-warn:CSxxxx
+            dotnet publish -c Release
             sudo systemctl restart my-web.service
             systemctl restart nginx.service
