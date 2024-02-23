@@ -120,6 +120,28 @@ RESEND_SMTP_USERNAME =  env('RESEND_SMTP_USERNAME_SC')
 RESEND_SMTP_HOST =  env('RESEND_SMTP_HOST_SC')
 RESEND_API_KEY =  env('RESEND_API_KEY_SC')
 
+# TinyMCE
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'width': 900,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'plugins': '''
+        textcolor save link image preview
+        code table contextmenu
+    ''',
+    'toolbar': '''
+        undo redo | styleselect | bold italic | 
+        alignleft aligncenter alignright | 
+        bullist numlist outdent indent | link image
+    ''',
+    'menubar': 'file edit insert view',
+    'image_caption': True,
+    'valid_elements': '*[*]',
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
