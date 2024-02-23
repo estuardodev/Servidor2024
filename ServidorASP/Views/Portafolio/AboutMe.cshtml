@@ -12,7 +12,7 @@
                     <br class="block sm:hidden" />Estuardo Ramírez
                 </h1>
                 <p class="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 dark:text-gray-300 md:mt-8">
-                    @(aboutMe == null ? "No encontrado" : aboutMe.TextoLargo)
+                    @(aboutMe == null ? "No encontrado" : Html.Raw(aboutMe.TextoLargo))
                 </p>
 
                 <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 md:mt-8">
