@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 // Db Conexion
 try
 {
-    var variable = Environment.GetEnvironmentVariable(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var variable = Environment.GetEnvironmentVariable("ConexionDb");
     builder.Services.AddDbContext<RailwayContext>(options => options.UseNpgsql(variable));
 }
 catch (Exception e)
