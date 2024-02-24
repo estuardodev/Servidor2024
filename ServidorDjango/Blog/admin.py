@@ -8,6 +8,13 @@ class ArticuloAdmin(admin.ModelAdmin):
     readonly_fields = ('visitas', 'likes',)
     fields = ('titulo', 'visitas', 'likes', 'descripcion', 'tags', 'url', 'prioridad', 'contenido', 'image', 'descripcion_imagen', 'autor', 'estado', 'categorias')
 
+    actions = ['desactivar_todo']
+
+    def desactivar_todo(self, request, queryset):
+        queryset.update(estado=False)
+        
+    desactivar_todo.short_description = "Desactivar todos los articulos seleccionados"
+
 admin.site.register(models.Articulo, ArticuloAdmin)
 
 class CategoriaAdmin(admin.ModelAdmin):
