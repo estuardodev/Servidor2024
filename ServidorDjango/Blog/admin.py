@@ -12,7 +12,7 @@ class ArticuloAdmin(admin.ModelAdmin):
 
     def desactivar_todo(self, request, queryset):
         for articulo in queryset:
-            articulo.estado = False
+            articulo.estado = 2
             articulo.save()
         
     desactivar_todo.short_description = "Desactivar todos los articulos seleccionados"
