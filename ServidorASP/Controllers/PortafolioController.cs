@@ -126,7 +126,7 @@ namespace ServidorASP.Controllers
         public IActionResult RobotsTxt()
         {
             // Ruta del archivo de texto en la carpeta wwwroot
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Portafolio", "robots.txt");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Portafolio", "robots.txt");
 
             // Lee el contenido del archivo
             var contenido = System.IO.File.ReadAllText(filePath);
@@ -141,7 +141,7 @@ namespace ServidorASP.Controllers
         public IActionResult AppAds()
         {
             // Ruta del archivo de texto en la carpeta wwwroot
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Portafolio", "app-ads.txt");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Portafolio", "app-ads.txt");
 
             // Lee el contenido del archivo
             var contenido = System.IO.File.ReadAllText(filePath);
