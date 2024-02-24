@@ -27,7 +27,7 @@ namespace ServidorWeb.Controllers
             if (!live.Equals("{'message': 'none'}"))
             {
                 JsonDocument json = JsonDocument.Parse(live);
-                if (json.RootElement.GetProperty("data").GetArrayLength() > 0)
+                if (json != null)
                 {
                     int follows = twitch.followers(json.RootElement[0].GetProperty("user_id").ToString());
                     ViewBag.follows = follows;
