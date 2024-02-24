@@ -231,6 +231,10 @@ namespace ServidorWeb.Controllers
                 .Take(60)
                 .ToList();
             }
+            else
+            {
+                return NotFound();
+            }
 
 
 
