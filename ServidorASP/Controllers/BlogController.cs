@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ServidorASP.Models;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Xml;
 
 namespace ServidorWeb.Controllers
 {
@@ -33,7 +35,7 @@ namespace ServidorWeb.Controllers
 
             if (!string.IsNullOrEmpty(filter))
             {
-                switch (filter){
+                switch (filter) {
                     case "posts":
                         ViewBag.Paquete = _context.Articulos.Where(e => e.EstadoId == 1).OrderByDescending(e => e.Id).Take(16).ToList();
                         ViewBag.ActivePosts = true;
@@ -190,5 +192,108 @@ namespace ServidorWeb.Controllers
             }
         }
 
+        [Route("feed/")]
+        [Route("feed/tecnologia/")]
+        [Route("feed/tendencia/")]
+        [Host("estuardodev.com")]
+        public IActionResult FeedRss()
+        {
+            var path = HttpContext.Request.Path;
+            List<Articulo> data = null;
+
+            if (path == "/feed/")
+            {
+                data = _context.Articulos
+                .Include(a => a.ArticuloCategoria).ThenInclude(ac => ac.Categoria)
+                .Include(e => e.ArticuloAutors).ThenInclude(ec => ec.Autores)
+                .Where(e => e.EstadoId == 1 && e.Id != 1)
+                .OrderByDescending(e => e.FechaHoraCreacion)
+                .Take(60)
+                .ToList();
+            }
+            else if (path == "/feed/tecnologia/")
+            {
+                data = _context.Articulos
+                .Include(a => a.ArticuloCategoria).ThenInclude(ac => ac.Categoria)
+                .Include(e => e.ArticuloAutors).ThenInclude(ec => ec.Autores)
+                .Where(e => e.EstadoId == 1 && e.Id != 1 && e.ArticuloCategoria.Any(ac => ac.Categoria.Nombre == "Tecnología"))
+                .OrderByDescending(e => e.FechaHoraCreacion)
+                .Take(60)
+                .ToList();
+            }
+            else if (path == "/feed/tendencia/")
+            {
+                data = _context.Articulos
+                .Include(a => a.ArticuloCategoria).ThenInclude(ac => ac.Categoria)
+                .Include(e => e.ArticuloAutors).ThenInclude(ec => ec.Autores)
+                .Where(e => e.EstadoId == 1 && e.Id != 1 && e.ArticuloCategoria.Any(ac => ac.Categoria.Nombre == "Tendencia"))
+                .OrderByDescending(e => e.FechaHoraCreacion)
+                .Take(60)
+                .ToList();
+            }
+
+
+
+            var xmlDoc = new XmlDocument();
+            var rssNode = xmlDoc.CreateElement("rss");
+            rssNode.SetAttribute("version", "2.0");
+
+            var channelNode = xmlDoc.CreateElement("channel");
+
+            var titleNode = xmlDoc.CreateElement("title");
+            titleNode.InnerText = "estuardodev";
+            channelNode.AppendChild(titleNode);
+
+            var linkNode = xmlDoc.CreateElement("link");
+            linkNode.InnerText = "https://estuardodev.com";
+            channelNode.AppendChild(linkNode);
+
+            var descriptionNode = xmlDoc.CreateElement("description");
+            descriptionNode.InnerText = "Mantente actualizado con las últimas noticias y análisis de nuestro equipo técnico. Desde política hasta entretenimiento, cubrimos todo lo que necesitas saber en nuestro blog de noticias actualizado diariamente.";
+            channelNode.AppendChild(descriptionNode);
+
+            foreach (var item in data)
+            {
+                var itemNode = xmlDoc.CreateElement("item");
+
+                var itemTitleNode = xmlDoc.CreateElement("title");
+                itemTitleNode.InnerText = item.Titulo;
+                itemNode.AppendChild(itemTitleNode);
+
+                var itemLinkNode = xmlDoc.CreateElement("link");
+                itemLinkNode.InnerText = $"https://estuardodev.com{item.RealUrl()}";
+                itemNode.AppendChild(itemLinkNode);
+
+                var itemGuidNode = xmlDoc.CreateElement("guid");
+                itemGuidNode.InnerText = $"https://estuardodev.com{item.RealUrl()}";
+                itemNode.AppendChild(itemGuidNode);
+
+                var itemDescriptionNode = xmlDoc.CreateElement("description");
+                itemDescriptionNode.InnerXml = $@"<![CDATA[<a href=""https://estuardodev.com{item.RealUrl()}""><img width=""560"" height=""280"" src=""https://estuardodev.com/media/{item.Image}"" alt=""{item.DescripcionImagen}"" align=""center"" style=""display: block;margin: 0 auto 20px;max-width:100%"" /></a><p>{item.Descripcion}</p><p><a href=""https://estuardodev.com{item.RealUrl()}"" rel=""nofollow"">Leer más</a></p>]]>";
+                itemNode.AppendChild(itemDescriptionNode);
+
+                var itemPubDateNode = xmlDoc.CreateElement("pubDate");
+                itemPubDateNode.InnerText = item.FechaHoraCreacion?.ToString("R") ?? string.Empty;
+                itemNode.AppendChild(itemPubDateNode);
+
+                foreach (var category in item.ArticuloCategoria)
+                {
+                    var categoryNode = xmlDoc.CreateElement("category");
+                    categoryNode.InnerText = category.Categoria.Nombre;
+                    itemNode.AppendChild(categoryNode);
+                }
+
+                var tagsNode = xmlDoc.CreateElement("tags");
+                tagsNode.InnerText = item.Tags;
+                itemNode.AppendChild(tagsNode);
+
+                channelNode.AppendChild(itemNode);
+            }
+
+            rssNode.AppendChild(channelNode);
+            xmlDoc.AppendChild(rssNode);
+
+            return Content(xmlDoc.OuterXml, "application/xml");
+        }
     }
 }

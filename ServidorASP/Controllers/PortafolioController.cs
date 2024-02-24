@@ -126,7 +126,7 @@ namespace ServidorASP.Controllers
         public IActionResult RobotsTxt()
         {
             // Ruta del archivo de texto en la carpeta wwwroot
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Portafolio", "robots.txt");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Portafolio", "robots.txt");
 
             // Lee el contenido del archivo
             var contenido = System.IO.File.ReadAllText(filePath);
