@@ -9,6 +9,14 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
+        env:
+            SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            NAME_DB: ${{ secrets.NAME_DB }}
+            USER_DB: ${{ secrets.USER_DB }}
+            PASS_DB: ${{ secrets.PASS_DB }}
+            HOST_DB: ${{ secrets.HOST_DB }}
+            PORT_DB: ${{ secrets.PORT_DB }}
+
         steps:
             - uses: actions/checkout@v2
 
