@@ -10,7 +10,23 @@ SHARE_DIR = os.path.dirname(BASE_DIR)
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ['localhost']),
+    TRUSTED_ORIGINS=(list, []),
+
+    CSRF_COOKIE_SECURE=(bool, False), 
+    SESSION_COOKIE_SECURE=(bool, False), 
+    SECURE_SSL_REDIRECT=(bool, False),  
+    SECURE_HSTS_SECONDS=(int, 0),  
+    SECURE_HSTS_INCLUDE_SUBDOMAINS=(bool, False), 
+    SECURE_HSTS_PRELOAD=(bool, False), 
+    SILENCED_SYSTEM_CHECKS = (list, []),
+    
+    EMAIL_BACKEND_SC=(str, ''),
+    RESEND_SMTP_PORT_SC=(str, ''),
+    RESEND_SMTP_USERNAME_SC=(str, ''),
+    RESEND_SMTP_HOST_SC=(str, ''),
+    RESEND_API_KEY_SC=(str, ''),
 )
 
 # Ruta del archivo que contiene las variables de entorno
