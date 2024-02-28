@@ -92,7 +92,7 @@ namespace ServidorASP.Controllers
                 {
                     try
                     {
-                        formulariocontacto.Fecha = DateTime.Now;
+                        formulariocontacto.Fecha = DateTime.UtcNow;
                         _dbServerContext.Formulariocontactos.Add(formulariocontacto);
                         _dbServerContext.SaveChanges();
                         ViewBag.estado = "Correcto";
