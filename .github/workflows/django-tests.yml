@@ -16,6 +16,8 @@ jobs:
             PASS_DB: ${{ secrets.PASS_DB }}
             HOST_DB: ${{ secrets.HOST_DB }}
             PORT_DB: ${{ secrets.PORT_DB }}
+            ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+            TRUSTED_ORIGINS: ${{ secrets.TRUSTED_ORIGINS }}
 
         steps:
             - uses: actions/checkout@v2
