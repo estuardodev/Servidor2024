@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServidorASP.Clases;
 using ServidorASP.Models;
 using System.Diagnostics;
 
@@ -8,6 +9,8 @@ namespace ServidorASP.Controllers
     {
         private readonly ILogger<PortafolioController> _logger;
         private readonly RailwayContext _dbServerContext;
+        GitHubAPI gitHubAPI = new GitHubAPI("estuardodev", "Servidor2024");
+        
 
         public PortafolioController(ILogger<PortafolioController> logger, RailwayContext dbServerContext)
         {
@@ -17,10 +20,13 @@ namespace ServidorASP.Controllers
 
         public IActionResult Index()
         {
+            
+            ViewBag.License = gitHubAPI.getLicense();
             ViewBag.AboutMe = _dbServerContext.PortafolioPortafolios.FirstOrDefault(e => e.Id == 1);
             ViewBag.Skills = _dbServerContext.PortafolioHabilidades.OrderBy(e => e.Id).ToList();
             ViewBag.Projects = _dbServerContext.PortafolioProyectos.OrderBy(e => e.Id).ToList();
             ViewBag.Certifications = _dbServerContext.PortafolioCertificaciones.OrderBy(e => e.Id).ToList();
+
 
             return View();
         }

@@ -4,12 +4,14 @@ using ServidorASP.Models;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Xml;
+using ServidorASP.Clases;
 
 namespace ServidorWeb.Controllers
 {
     public class BlogController : Controller
     {
         private readonly RailwayContext _context;
+        GitHubAPI gitHubAPI = new GitHubAPI("estuardodev", "Servidor2024");
 
         public BlogController(RailwayContext context) { _context = context; }
 
@@ -21,6 +23,7 @@ namespace ServidorWeb.Controllers
             ViewBag.ActivePosts = true;
             ViewBag.ActiveTendencia = false;
             ViewBag.ActiveReciente = false;
+            ViewBag.License = gitHubAPI.getLicense();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -77,7 +80,7 @@ namespace ServidorWeb.Controllers
             ViewBag.ArticuloRender = articulo;
             articulo.Visitas += 1;
             _context.SaveChanges();
-
+            ViewBag.License = gitHubAPI.getLicense();
             return View("Articulo/ArticuloIndex");
         }
 
@@ -89,6 +92,7 @@ namespace ServidorWeb.Controllers
             ViewBag.ActivePosts = true;
             ViewBag.ActiveTendencia = false;
             ViewBag.ActiveReciente = false;
+            ViewBag.License = gitHubAPI.getLicense();
 
             if (!string.IsNullOrEmpty(search))
             {
