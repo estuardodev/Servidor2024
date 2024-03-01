@@ -48,7 +48,7 @@ class Articulo(models.Model):
     fecha_hora_creacion = models.DateTimeField(verbose_name="Fecha y Hora de Creación",auto_now_add=True, null=True)
     visitas = models.IntegerField(default=0, verbose_name="Total Visitas", null=True) 
     likes = models.IntegerField(default=0, verbose_name="Likes", null=True)
-    ip_likes = models.CharField(verbose_name="Like IP", max_length=100, default='Estuardo Ramírez')
+    ip_likes = models.CharField(verbose_name="Like IP", max_length=100)
     compartidos = models.IntegerField(default=0, verbose_name="Veces Compartidas", null=True)
     prioridad = models.FloatField(verbose_name="Prioridad del sitio", default=0.9)
     image = ResizedImageField(verbose_name="Imágen del artículo",force_format="WEBP", quality=100, upload_to='images/', null=True, blank=True)
