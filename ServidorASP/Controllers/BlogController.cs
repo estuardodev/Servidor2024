@@ -194,7 +194,7 @@ namespace ServidorWeb.Controllers
                     }
                     else
                     {
-                        return Json(new { success = false });
+                        return Json(new { success = false, likes = article.Likes });
                     }
                 }
             }
