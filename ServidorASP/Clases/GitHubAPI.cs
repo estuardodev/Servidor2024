@@ -34,5 +34,24 @@ namespace ServidorASP.Clases
             }
             return "No se encontró la licencia.";
         }
+
+        public Dictionary<string, object> getProfile()
+        {
+            string url = $"https://api.github.com/users/{owner}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("User-Agent", "C# App");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            if(response.IsSuccessStatusCode) { 
+                string jsonResponse = response.Content.ReadAsStringAsync().Result;
+                var dataResponse = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResponse);
+                return dataResponse;
+            }
+
+            return null;
+        }
     }
 }

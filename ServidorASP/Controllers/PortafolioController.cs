@@ -20,7 +20,9 @@ namespace ServidorASP.Controllers
 
         public IActionResult Index()
         {
-            
+            var data = gitHubAPI.getProfile();
+            ViewBag.Avatar = data["avatar_url"];
+            ViewBag.Email = data["email"];
             ViewBag.License = gitHubAPI.getLicense();
             ViewBag.AboutMe = _dbServerContext.PortafolioPortafolios.FirstOrDefault(e => e.Id == 1);
             ViewBag.Skills = _dbServerContext.PortafolioHabilidades.OrderBy(e => e.Id).ToList();
