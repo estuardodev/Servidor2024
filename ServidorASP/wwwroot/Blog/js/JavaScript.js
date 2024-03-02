@@ -4,7 +4,7 @@
   
         likeArticle(articleId)
             .then(resultado => {
-                
+                console.log(resultado);
                 if (resultado) {
                     element.classList.add("liked");
                     element.querySelector('.like-filled-icon').classList.remove('hidden');

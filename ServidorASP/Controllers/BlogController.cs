@@ -141,14 +141,11 @@ namespace ServidorWeb.Controllers
         {
             if (Request.Method == "POST")
             {
-                Console.WriteLine("LLEGO POST");
-                Console.WriteLine(articleId);
                 // Obtener el artículo desde la base de datos
                 var article = _context.Articulos.FirstOrDefault(a => a.Id == Convert.ToInt32(articleId));
 
                 if (article != null)
                 {
-                    Console.WriteLine("ARTICULO ENCONTRADO");
                     var userIp = Request.HttpContext.Connection.RemoteIpAddress.ToString();
                     var likesIpList = !string.IsNullOrEmpty(article.IpLikes) ? article.IpLikes.Split(',') : new string[0];
                     if (likesIpList.Contains(userIp))
@@ -173,22 +170,17 @@ namespace ServidorWeb.Controllers
         }
 
         [HttpPost]
-        [Route("/Blog/LikeArticleGET/{articleId}")]
-        public ActionResult LikeArticleGET(int articleId)
+        [Route("/Blog/LikeArticleGET/{articleId}/{estado}")]
+        public ActionResult LikeArticleGET(int articleId, bool estado)
         {
             if (Request.Method == "POST")
-            {
-                Console.WriteLine("LLEGO POST");
-                Console.WriteLine(articleId);
+            {               
                 // Obtener el artículo desde la base de datos
                 var article = _context.Articulos.FirstOrDefault(a => a.Id == Convert.ToInt32(articleId));
 
                 if (article != null)
                 {
-                    Console.WriteLine("ARTICULO ENCONTRADO");
-                    var userIp = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-                    var likesIpList = !string.IsNullOrEmpty(article.IpLikes) ? article.IpLikes.Split(',') : new string[0];
-                    if (likesIpList.Contains(userIp))
+                    if (estado)
                     {
                         return Json(new { success = true, likes = article.Likes });
                     }
