@@ -1,15 +1,18 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+    var estado = false;
+
     document.querySelectorAll(".like-button").forEach(function (element) {
         const articleId = element.dataset.articleId;
   
         likeArticle(articleId)
             .then(resultado => {
-                console.log(resultado);
                 if (resultado) {
+                    estado = true;
                     element.classList.add("liked");
                     element.querySelector('.like-filled-icon').classList.remove('hidden');
                     localStorage.setItem(`liked_${articleId}`, "true");
                 } else {
+                    estado = false;
                     element.classList.remove("liked");
                     element.querySelector('.like-filled-icon').classList.add('hidden');
                     localStorage.removeItem(`liked_${articleId}`);
@@ -29,14 +32,14 @@
             const likeFilledIcon = likeButton.querySelector('.like-filled-icon');
             var likeCount = document.querySelector(".like-count");
             
-            const url = `/Blog/LikeArticle/${articleId}`;
+            const url = `/Blog/LikeArticle/${articleId}/${estado}`;
             fetch(url, {
                 method: 'POST',
                 
                 headers: {
                     'Content-Type': 'application/json' 
                 },
-                body: JSON.stringify({ articleId: articleId })
+                body: JSON.stringify({ articleId: articleId, estado: estado })
                 
             })
                 .then(response => {

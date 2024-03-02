@@ -99,9 +99,6 @@ public partial class RailwayContext : DbContext
             entity.Property(e => e.Image)
                 .HasMaxLength(100)
                 .HasColumnName("image");
-            entity.Property(e => e.IpLikes)
-                .HasMaxLength(100)
-                .HasColumnName("ip_likes");
             entity.Property(e => e.Likes).HasColumnName("likes");
             entity.Property(e => e.Prioridad).HasColumnName("prioridad");
             entity.Property(e => e.Tags)

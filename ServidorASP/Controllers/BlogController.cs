@@ -136,8 +136,8 @@ namespace ServidorWeb.Controllers
         }
 
         [HttpPost]
-        [Route("/Blog/LikeArticle/{articleId}")]
-        public ActionResult LikeArticle(int articleId)
+        [Route("/Blog/LikeArticle/{articleId}/{estado}")]
+        public ActionResult LikeArticle(int articleId, bool estado)
         {
             if (Request.Method == "POST")
             {
@@ -146,20 +146,16 @@ namespace ServidorWeb.Controllers
 
                 if (article != null)
                 {
-                    var userIp = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-                    var likesIpList = !string.IsNullOrEmpty(article.IpLikes) ? article.IpLikes.Split(',') : new string[0];
-                    if (likesIpList.Contains(userIp))
+                    
+                    if (estado)
                     {
                         article.Likes -= 1;
-                        likesIpList = likesIpList.Except(new[] { userIp }).ToArray();
                     }
                     else
                     {
                         article.Likes += 1;
-                        likesIpList = likesIpList.Concat(new[] { userIp }).ToArray();
                     }
 
-                    article.IpLikes = string.Join(",", likesIpList);
                     _context.SaveChanges();
 
                     return Json(new { success = true, likes = article.Likes });

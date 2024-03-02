@@ -23,8 +23,6 @@ public partial class Articulo
 
     public int? Likes { get; set; }
 
-    public string IpLikes { get; set; } = null!;
-
     public int? Compartidos { get; set; }
 
     public double Prioridad { get; set; }
