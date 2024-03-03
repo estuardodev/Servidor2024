@@ -56,6 +56,7 @@
                         likeCount.textContent = newLikes;
                         likeButton.classList.toggle("liked");
                         likeFilledIcon.classList.toggle('hidden');
+                        estado = !estado;
 
                         // Almacenar o eliminar el estado de "like" en LocalStorage
                         const localStorageKey = `liked_${articleId}`;
