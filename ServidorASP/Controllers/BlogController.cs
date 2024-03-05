@@ -149,12 +149,10 @@ namespace ServidorWeb.Controllers
                     
                     if (estado)
                     {
-                        Console.WriteLine("True");
                         article.Likes -= 1;
                     }
                     else
                     {
-                        Console.WriteLine("False");
                         article.Likes += 1;
                     }
 
@@ -180,12 +178,10 @@ namespace ServidorWeb.Controllers
                 {
                     if (estado)
                     {
-                        
                         return Json(new { success = true, likes = article.Likes });
                     }
                     else
                     {
-                        
                         return Json(new { success = false, likes = article.Likes });
                     }
                 }
