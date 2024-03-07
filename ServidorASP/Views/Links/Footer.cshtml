@@ -1,0 +1,28 @@
+﻿<footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a asp-host="estuardodev.link" asp-controller="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <img src="@ViewBag.Avatar" class="h-8" alt="ViewBag.Username" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">@ViewBag.Name</span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <li>
+                    <a asp-host="estuardo.dev" asp-controller="" class="hover:underline me-4 md:me-6">Acerca de mi</a>
+
+                </li>
+                <li>
+                    <a asp-host="estuardo.dev" asp-controller="Legal" asp-action="Privacidad" class="hover:underline me-4 md:me-6">Políticas de Privacidad</a>
+                </li>
+                <li>
+                    <a href="@ViewBag.LicenceURL" class="hover:underline me-4 md:me-6">Licencia</a>
+                </li>
+                <li>
+                    <a asp-host="estuardo.dev" asp-controller="Portafolio" asp-action="Contacto" class="hover:underline">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="@ViewBag.RepositoryURL" target="_blank">@ViewBag.License</a> | 2024 - @DateTime.Now.Year <a href="https://estuardo.dev" class="hover:underline">Estuardo Ramírez</a>.</span>
+    </div>
+</footer>
+

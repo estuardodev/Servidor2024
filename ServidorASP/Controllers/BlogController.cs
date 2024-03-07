@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServidorASP.Models;
-using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Xml;
 using ServidorASP.Clases;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace ServidorWeb.Controllers
 {
@@ -24,7 +21,8 @@ namespace ServidorWeb.Controllers
             ViewBag.ActivePosts = true;
             ViewBag.ActiveTendencia = false;
             ViewBag.ActiveReciente = false;
-            ViewBag.License = gitHubAPI.getLicense();
+            var licence = gitHubAPI.getLicense();
+            ViewBag.License = licence["name"];
 
             if (!string.IsNullOrEmpty(search))
             {
