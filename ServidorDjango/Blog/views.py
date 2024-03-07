@@ -6,7 +6,11 @@ from io import BytesIO
 from PIL import Image
 
 # Create your views here.
-STATIC_DIR = os.path.join(settings.SHARE_DIR, 'ServidorASP', 'wwwroot')
+DEBUG = settings.DEBUG
+if DEBUG:
+    STATIC_DIR = os.path.join(settings.SHARE_DIR, 'ServidorASP','bin', 'Release', 'net8.0', 'publish', 'wwwroot',)
+else:
+    STATIC_DIR = os.path.join(settings.SHARE_DIR, 'ServidorASP', 'wwwroot')
 MEDIA_ROOT = settings.MEDIA_ROOT
 
 def getImage(request):
