@@ -44,7 +44,7 @@ def getImage(request):
     image.save(image_io, format=image.format)
     return HttpResponse(image_io.getvalue(), content_type=f'image/{image.format.lower()}')
 
-def getStatic(request):
+'''def getStatic(request):
     image_file = request.GET.get('image')
     size = request.GET.get('size')
     format = request.GET.get('format')
@@ -73,4 +73,4 @@ def getStatic(request):
     
     image_io = BytesIO()
     image.save(image_io, format=image.format)
-    return HttpResponse(image_io.getvalue(), content_type=f'image/{image.format.lower()}')
+    return HttpResponse(image_io.getvalue(), content_type=f'image/{image.format.lower()}')'''
