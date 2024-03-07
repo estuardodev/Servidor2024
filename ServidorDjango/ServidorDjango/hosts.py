@@ -19,5 +19,5 @@ host_patterns = patterns(
     host(r'www', settings.ROOT_URLCONF, name="www"),
     host(fr'{env.str("SUB_DOMAIN_ONE")}', 'Portafolio.urls', name="admin"),
     host(fr'{env.str("SUB_DOMAIN_TWO")}', 'JanoAbonce.urls', name="janoabonceAdmin"),
-
+    host(fr'{env.str("SUB_DOMAIN_THREE")}', 'Blog.urls', name="apiBlog"),
 )
