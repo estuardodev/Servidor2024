@@ -50,6 +50,10 @@ app.MapWhen(
     context => context.Request.Host.Host.Equals("janoabonce.stream", StringComparison.OrdinalIgnoreCase),
     ConfigureJanoAbonce);
 
+app.MapWhen(context =>
+    context.Request.Host.Host.Equals("estuardodev.link", StringComparison.OrdinalIgnoreCase),
+    ConfigureEstuardoDevLink);
+
 app.UseRouting();
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
@@ -60,6 +64,12 @@ void ConfigureEstuardoDotDev(IApplicationBuilder estuardoDotDevApp)
 {
     estuardoDotDevApp.UseRouting().UseEndpoints(e => e.MapControllerRoute("estuardo.dev", "{controller=Portafolio}/{action=Index}/{id?}"));
 }
+
+void ConfigureEstuardoDevLink(IApplicationBuilder estuardodevlinkApp)
+{
+    estuardodevlinkApp.UseRouting().UseEndpoints(e => e.MapControllerRoute("estuardodev.link", "{controller=Links}/{action=Index}/{id?}"));
+}
+
 void ConfigureJanoAbonce(IApplicationBuilder janoAbonceApp) =>
     janoAbonceApp.UseRouting().UseEndpoints(e => e.MapControllerRoute("janoabonce.stream", "{controller=Jano}/{action=Index}/{id?}"));
 
