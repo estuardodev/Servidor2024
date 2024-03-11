@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.PASSWORD_SSH }}
           script: |
             cd /Servidor2024/
             source venv/bin/activate
