@@ -13,7 +13,7 @@ else:
     STATIC_DIR = os.path.join(settings.SHARE_DIR, 'ServidorASP', 'wwwroot')
 MEDIA_ROOT = settings.MEDIA_ROOT
 
-def getImage(request):
+'''def getImage(request):
     image_file = request.GET.get('image')
     size = request.GET.get('size')
     format = request.GET.get('format')
@@ -43,7 +43,7 @@ def getImage(request):
     image_io = BytesIO()
     image.save(image_io, format=image.format)
     return HttpResponse(image_io.getvalue(), content_type=f'image/{image.format.lower()}')
-
+'''
 '''def getStatic(request):
     image_file = request.GET.get('image')
     size = request.GET.get('size')
