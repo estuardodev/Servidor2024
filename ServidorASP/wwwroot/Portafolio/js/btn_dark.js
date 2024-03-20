@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (comprobacion) {
         // Obtener el estado del modo oscuro desde localStorage
         document.documentElement.classList.add('dark');
+        themeToggleBtn.checked = true;
     } else if (existClave == null) {
         var useDarkMode = prefersDarkMode;
         // Establecer el estado inicial del interruptor de tema y el tema
