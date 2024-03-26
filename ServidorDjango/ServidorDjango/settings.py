@@ -21,6 +21,7 @@ env = environ.Env(
     SECURE_HSTS_INCLUDE_SUBDOMAINS=(bool, False), 
     SECURE_HSTS_PRELOAD=(bool, False), 
     SILENCED_SYSTEM_CHECKS = (list, []),
+    AUTHORIZATION = (str, 'Bearer 123456'),
     
     EMAIL_BACKEND_SC=(str, ''),
     RESEND_SMTP_PORT_SC=(str, ''),

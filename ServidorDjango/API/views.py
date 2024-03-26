@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import json
 import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
