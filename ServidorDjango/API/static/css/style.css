@@ -1,0 +1,44 @@
+@page {
+    size: "A4";
+    margin: 1.0cm 1.0cm 1.0cm 1.0cm;
+}
+
+@media (max-width: 345px) {
+    h1 {
+        font-size: 10px;
+        /* Ajusta el tamaño de fuente según tu preferencia */
+    }
+}
+
+body {
+    font-size: 16px;
+}
+
+.bordered {
+    border: 1px solid #898989;
+    border-radius: 5px;
+    padding: 5px 15px 5px 20px;
+    font-size: 9px;
+    color: #5b6166;
+}
+
+.borderedTable{
+    border: 1px solid #898989;
+    border-radius: 5px;
+    padding: 5px 15px 5px 20px;
+    font-size: 9px;
+    color: #5b6166;
+}
+
+.borderedEnd{
+    border: 1px solid #898989;
+    border-radius: 5px;
+    font-size: 9px;
+    color: #5b6166;
+}
+
+.bordered-content {
+    border: 1px solid #898989;
+    border-radius: 5px;
+    color: #5b6166;
+}

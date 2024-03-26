@@ -1,0 +1,295 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reporte PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    </head>
+
+    <body>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="row p-1 ">
+                        <div class="col-2 p-0 d-flex justify-content-start">
+                            {% if data.companyName == 'TOP SPIN CASINO' %}
+                                <img style="max-width: 90px;" src="{% static "img/icon.svg" %}">
+                            {% else %}
+                                <img style="max-width: 90px;" src="{% static "img/kidz.svg" %}">
+                            {% endif %}
+                            
+                        </div>
+                        <div class="col-5" style="margin-right: 85px;">
+                            <div>
+                                <label>{{data.companyName}}</label>
+                            </div>
+                            <div>
+                                <label>RFC: {{data.companyRfc}}</label>
+                                <label>NRP: {{data.companyNrp}}</label>
+                            </div>
+                            <div>
+                                <label>{{data.companyAddress}}</label>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0 d-flex justify-content-end">
+                            <label style="font-size: 9px; ">{{data.date}}, {{hour_am_pm}}</label>
+                        </div>
+                    </div>
+
+                    <!--Body-->
+                    <div class="row mt-2 p-1">
+
+                        <div class="col-5 bordered" style="margin-right: 10px;">
+                            <div class="row">
+                                <div class="col-6 p-0 d-grid" >
+                                    <div><label class="control-label text-black">Nombre: </label></div>
+                                    <div><label class="control-label text-black">RFC: </label></div>
+                                    <div><label class="control-label text-black">CURP: </label></div>
+                                    <div><label class="control-label text-black">Fecha Ingreso: </label></div>
+                                    <div><label class="control-label text-black">Tipo de Jornada: </label></div>
+                                    <div><label class="control-label text-black">Tipo de Salario: </label></div>
+                                    <div><label class="control-label text-black">Posicion: </label></div>
+                                    <div><label class="control-label text-black">Departamento: </label></div>
+                                </div>
+                                <div class="col-6 p-0 d-grid">
+                                    <div><label class="control-label">{{data.employeeName}}</label></div>
+                                    <div><label class="control-label">{{data.employeeRfc}}</label></div>
+                                    <div><label class="control-label">{{data.employeCurp}}</label></div>
+                                    <div><label class="control-label">{{data.startDate}}</label> </div>
+                                    <div><label class="control-label">{{data.typeOfDay}}</label></div>
+                                    <div><label class="control-label">{{data.contributionBaseName}}</label></div>
+                                    <div><label class="control-label">{{data.position}}</label></div>
+                                    <div><label class="control-label">{{data.department}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5 bordered">
+                            <div class="row">
+                                <div class="col-6 p-0 d-grid">
+                                    <div><label class="control-label text-black">Días de Pago: </label></div>
+                                    <div><label class="control-label text-black">Fecha de Pago: </label></div>
+                                    <div><label class="control-label text-black">Tipo de Periodo: </label></div>
+                                    <div><label class="control-label text-black">Salario Base: </label></div>
+                                    <div><label class="control-label text-black">Rango de Fecha: </label></div>
+                                    <div><label class="control-label text-black">Semana: </label></div>
+                                    <div><label class="control-label text-black">Ejercicio: </label></div>
+                                </div>
+                                <div class="col-6 p-0 d-grid">
+                                    <div><label class="control-label">{{data.periodDays}}</label></div>
+                                    <div><label class="control-label">{{data.paymentDate}}</label></div>
+                                    <div><label class="control-label">{{data.typeOfPeriod}}</label></div>
+                                    <div><label class="control-label">{{data.salary}}</label> </div>
+                                    <div><label class="control-label">{{data.dateRange}}</label></div>
+                                    <div><label class="control-label">{{data.week}}</label></div>
+                                    <div><label class="control-label">{{data.year}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 p-1">
+
+                        <div class="col-6 d-flex justify-content-center bordered" style="margin-right: 10px;">
+                            <label style="font-size: 13px">Percepciones</label>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center bordered"> 
+                            <label style="font-size: 13px">Deducciones</label>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2 p-1">
+
+                        <div class="col-6 bordered" style="margin-right:10px;">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%;">No.</th>
+                                            <th style="width: 50%;">Concepto</th>
+                                            <th style="width: 10%;">Gravado</th>
+                                            <th style="width: 10%;">Exento</th>
+                                            <th style="width: 10%;">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--si calculateSeventhDay es falso -->
+                                        {% if calculateSeventhDay == False%}
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Sueldo Calculado</td>
+                                            <td>${{data.calculatedSalary}}</td>
+                                            <td>$0</td>
+                                            <td>${{data.calculatedSalary}}</td>
+                                        </tr>
+                                        {% else %}
+                                        <!--si no mostrar el septimo dia  -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Sueldo Calculado</td>
+                                            <td>${{data.calculatedSalary}}</td>
+                                            <td>$0</td>
+                                            <td>${{data.calculatedSalary}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>septimo dia</td>
+                                            <td>${{data.seventhDay}}</td>
+                                            <td>$0</td>
+                                            <td>${{data.seventhDay}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <!-- iterar los bonos o perceptions si las horas trabajadas son mayor o igual a las horas fijas por semana -->
+                                        {% for percepcion in perceptions %}
+                                            <tr>
+                                                <td></td>
+                                                <td>{{ percepcion.0 }}</td>
+                                                <td>${{ percepcion.1 }}</td>
+                                                {% if percepcion.2 %}
+                                                <td>${{percepcion.2}}</td>
+                                                {% else %}
+                                                <td>$0</td>
+                                                {% endif %}
+                                                <td>${{ percepcion.1 }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        <!-- iterar los bonos o perceptions si las horas trabajadas son mayor o igual a las horas fijas por semana -->
+
+                                        <!-- if si extra perception 1 != null-->
+                                        {% for perception in data.extraPerceptions %}
+                                            {% if perception != None %}
+                                            <tr>
+                                                <td></td>
+                                                <td>Extra percepción {{forloop.counter}}</td>
+                                                <td>${{perception}}</td>
+                                                <td></td>
+                                                <td>${{perception}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <!-- if si extra perception 3 != null-->
+                                        <tr>
+                                            <td></td>
+                                            <td>TOTAL PERCEPCIONES Y PAGOS: </td>
+                                            <td>${{data.subtotal}}</td>
+                                            <td></td>
+                                            <td>${{data.subtotal}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-4 borderedTable" style="">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Concepto</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% if data.employeeImss != None %}
+                                            <td>1</td>
+                                            <td>IMSS</td>
+                                            <td>${{data.employeeImss}}</td>
+                                            {% endif %}
+                                        </tr>
+                                        <!-- VALIDACION IF -->
+                                        {% if data.isr %}
+                                        <tr>
+                                            <td>2</td>
+                                            <td>ISR</td>
+                                            <td>${{data.isr}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <!-- VALIDACION IF -->
+                                        <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
+                                        {% for deduction in data.extraDeductions %}
+                                            {% if deduction != None %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>Deduccion extra</td>
+                                                <td>${{deduction}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-2 p-1">
+
+                        <div class="col-6" style="margin-right:46px;">
+                            <div style="max-width: 500px;  margin-top: 100%;">
+                                <hr class="p-0 m-0">
+                                <div class="d-flex justify-content-center">
+                                    <label>Firma de Empleado</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 borderedTable" style="">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>SUBTOTAL</td>
+                                            <td>${{data.subtotal}}</td>
+                                        </tr>
+                                        <!-- @if (Model.Isr != null && Model.Isr != 0) -->
+                                        {% if data.isr != None %}
+                                        <tr>
+                                            <td></td>
+                                            <td>RETENCIONES</td>
+                                            <td>${{data.isr}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <!-- @if (Model.TotalDeductions != null) -->
+                                        {% if data.totalDeductions != None %}
+                                        <tr>
+                                            <td></td>
+                                            <td>DESCUENTOS</td>
+                                            <td>${{data.totalDeductions}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td></td>
+                                            <td>TOTAL</td>
+                                            <td>${{data.total}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td style="color: darkblue">TOTAL NETO EN NOMINA</td>
+                                            <td>${{data.total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+</html>

@@ -20,4 +20,5 @@ host_patterns = patterns(
     host(fr'{env.str("SUB_DOMAIN_ONE")}', 'Portafolio.urls', name="admin"),
     host(fr'{env.str("SUB_DOMAIN_TWO")}', 'JanoAbonce.urls', name="janoabonceAdmin"),
     host(fr'{env.str("SUB_DOMAIN_THREE")}', 'Blog.urls', name="apiBlog"),
+    host(fr'{env.str("SUB_DOMAIN_FOUR")}', 'API.urls', name="api"),
 )

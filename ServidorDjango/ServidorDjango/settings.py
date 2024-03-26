@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'Blog.apps.BlogConfig',
     'JanoAbonce.apps.JanoabonceConfig',
     'Legal.apps.LegalConfig',
+    'API.apps.ApiConfig',
 
     'django_hosts',
     'tinymce',
