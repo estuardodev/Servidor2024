@@ -12,7 +12,8 @@
     </head>
 
     <body>
-        <div class="container-fluid ">
+        {% for data in datas %}
+            <div class="container-fluid ">
             <div class="row">
                 <div class="col-12 ">
                     <div class="row p-1 ">
@@ -37,7 +38,7 @@
                             </div>
                         </div>
                         <div class="col-3 p-0 d-flex justify-content-end">
-                            <label style="font-size: 9px; ">{{data.date}}, {{hour_am_pm}}</label>
+                            <label style="font-size: 9px; ">{{data.date}}, {{data.hour}}</label>
                         </div>
                     </div>
 
@@ -118,7 +119,7 @@
                                     </thead>
                                     <tbody>
                                         <!--si calculateSeventhDay es falso -->
-                                        {% if calculateSeventhDay == False%}
+                                        {% if data.calculateSeventhDay == False%}
                                         <tr>
                                             <td>1</td>
                                             <td>Sueldo Calculado</td>
@@ -290,6 +291,7 @@
                     </div>
                 </div>
             </div>
+        {% endfor %}
     </body>
 
 </html>

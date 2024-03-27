@@ -26,3 +26,4 @@ tinycss2
 Pyphen
 Pillow
 fontTools
+PyPDF2

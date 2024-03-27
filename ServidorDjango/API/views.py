@@ -8,43 +8,59 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 # Create your views here.
-authorization = settings.AUTHORIZATION
 
 @csrf_exempt
-def export_pdf(request):    
-    if not request.body or request.method != "POST":
-        return HttpResponseBadRequest("No data found")
-    
+def export_pdf(request):
     context = {}
-    try:
-        body = request.body
-        data = json.loads(body)
-        data = {key: value for key, value in data.items() if value is not None}
 
-        persepction:list = [value for value in data["extraPerceptions"] if value is not None]
-        data["extraPerceptions"] = persepction
+    if request.body and request.method == "POST":
+        try:
+            body = request.body
+            data = json.loads(body)
+            
+            datos = []
+            for index in range(len(data)):
+                dic = {}
+                for key, value in data[index].items():
+                    dic[key] = value
+                datos.append(dic)
 
-        persepction:list = [value for value in data["extraDeductions"] if value is not None]
-        data["extraDeductions"] = persepction
-        context["data"] = data
-    
-        persepctions:list = data["perceptions"]
-        persepctions:list = persepctions.split(",")
-        bonos:list = [i.split("$") for i in persepctions]
-        data["perceptions"] = bonos
-    except Exception as e:
-        print(e)
+            data = datos
 
-    hora_actual = datetime.datetime.now()
+            
+            for index in range(len(data)):
+                extraPerceptions:list = [value for value in data[index]["extraPerceptions"] if value is not None]
+                data[index]["extraPerceptions"] = extraPerceptions
 
-    hora_am_pm = hora_actual.strftime("%I:%M %p")
-    context['hour_am_pm'] = hora_am_pm
+                extraDeductions:list = [value for value in data[index]["extraDeductions"] if value is not None]
+                data[index]["extraDeductions"] = extraDeductions
 
-    html = render_to_string("app/report.html", context)
-    response = HttpResponse(content_type="application/pdf")
-    response["Content-Disposition"] = "inline; report.pdf"
-    font_config = FontConfiguration()
-    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, font_config=font_config)
-    return response
-   
+                persepctions:list = data[index]["perceptions"].split(",")
+                bonos:list = [i.split("$") for i in persepctions]
+                data[index]["perceptions"] = bonos
 
+
+            context["datas"] = data
+
+            html = render_to_string("app/report.html", context)
+            response = HttpResponse(content_type="application/pdf")
+            response["Content-Disposition"] = "inline; report.pdf"
+            font_config = FontConfiguration()
+            HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, font_config=font_config)
+
+            return response
+        except Exception as e:
+            print(e)
+            return HttpResponseBadRequest("Error")
+        
+
+
+#data = {key: value for key, value in data.items() if value is not None}
+
+            
+
+            
+
+            #context["data"] = data
+
+            
