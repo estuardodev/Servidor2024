@@ -13,28 +13,27 @@ authorization = settings.AUTHORIZATION
 @csrf_exempt
 def export_pdf(request):
     context = {}
-    authorization_header = request.headers.get('Authorization')
-    if authorization_header == authorization:
+    #authorization_header = request.headers.get('Authorization')
+    #if authorization_header == authorization:
                   
-        if request.body and request.method == "POST":
-            try:
-                body = request.body
-                data = json.loads(body)
-                data = {key: value for key, value in data.items() if value is not None}
+    if request.body and request.method == "POST":
+        try:
+            body = request.body
+            data = json.loads(body)
+            data = {key: value for key, value in data.items() if value is not None}
 
-                persepction:list = [value for value in data["extraPerceptions"] if value is not None]
-                data["extraPerceptions"] = persepction
+            persepction:list = [value for value in data["extraPerceptions"] if value is not None]
+            data["extraPerceptions"] = persepction
 
-                persepction:list = [value for value in data["extraDeductions"] if value is not None]
-                data["extraDeductions"] = persepction
+            persepction:list = [value for value in data["extraDeductions"] if value is not None]
+            data["extraDeductions"] = persepction
+            context["data"] = data
 
-                context["data"] = data
-
-                persepctions:list = data["perceptions"].split(",")
-                bonos:list = [i.split("$") for i in persepctions]
-                data["perceptions"] = bonos
-            except Exception as e:
-                print(e)
+            persepctions:list = data["perceptions"].split(",")
+            bonos:list = [i.split("$") for i in persepctions]
+            data["perceptions"] = bonos
+        except Exception as e:
+            print(e)
 
             hora_actual = datetime.datetime.now()
 
@@ -47,16 +46,22 @@ def export_pdf(request):
             font_config = FontConfiguration()
             HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, font_config=font_config)
 
-            return response
-        else:
-            return HttpResponseBadRequest("No data found")
+        return response
     else:
-        html = '''<h1>Authorization failed</h1>'''
+        html = '''<h1>No data found</h1>'''
         response = HttpResponse(content_type="application/pdf")
         response["Content-Disposition"] = "inline; report.pdf"
         font_config = FontConfiguration()
         HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, font_config=font_config)
 
         return HttpResponseBadRequest(response)
+'''    else:
+        html = <h1>Authorization failed</h1>
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = "inline; report.pdf"
+        font_config = FontConfiguration()
+        HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, font_config=font_config)
 
+        return HttpResponseBadRequest(response)
+'''
 
