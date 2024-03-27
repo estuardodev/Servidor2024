@@ -11,11 +11,8 @@ from django.conf import settings
 authorization = settings.AUTHORIZATION
 
 @csrf_exempt
-def export_pdf(request):
-    if request.headers.get("Authorization") != authorization:
-        return HttpResponseBadRequest("Unauthorized")
-    
-    if not request.body and request.method != "POST":
+def export_pdf(request):    
+    if not request.body or request.method != "POST":
         return HttpResponseBadRequest("No data found")
     
     context = {}
