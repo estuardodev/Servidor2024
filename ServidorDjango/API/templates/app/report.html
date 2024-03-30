@@ -47,7 +47,7 @@
 
                         <div class="col-5 bordered" style="margin-right: 10px;">
                             <div class="row">
-                                <div class="col-6 p-0 d-grid" >
+                                <div class="col-4 p-0 d-grid" >
                                     <div><label class="control-label text-black">Nombre: </label></div>
                                     <div><label class="control-label text-black">RFC: </label></div>
                                     <div><label class="control-label text-black">CURP: </label></div>
@@ -57,7 +57,7 @@
                                     <div><label class="control-label text-black">Posicion: </label></div>
                                     <div><label class="control-label text-black">Departamento: </label></div>
                                 </div>
-                                <div class="col-6 p-0 d-grid">
+                                <div class="col-8 p-0 d-grid">
                                     <div><label class="control-label">{{data.employeeName}}</label></div>
                                     <div><label class="control-label">{{data.employeeRfc}}</label></div>
                                     <div><label class="control-label">{{data.employeCurp}}</label></div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-5 bordered">
                             <div class="row">
-                                <div class="col-6 p-0 d-grid">
+                                <div class="col-4 p-0 d-grid">
                                     <div><label class="control-label text-black">Días de Pago: </label></div>
                                     <div><label class="control-label text-black">Fecha de Pago: </label></div>
                                     <div><label class="control-label text-black">Tipo de Periodo: </label></div>
@@ -80,7 +80,7 @@
                                     <div><label class="control-label text-black">Semana: </label></div>
                                     <div><label class="control-label text-black">Ejercicio: </label></div>
                                 </div>
-                                <div class="col-6 p-0 d-grid">
+                                <div class="col-8 p-0 d-grid">
                                     <div><label class="control-label">{{data.periodDays}}</label></div>
                                     <div><label class="control-label">{{data.paymentDate}}</label></div>
                                     <div><label class="control-label">{{data.typeOfPeriod}}</label></div>
@@ -197,7 +197,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            {% if data.employeeImss != None %}
+                                            {% if data.employeeImss != None and data.employeeImss != 0%}
                                             <td>1</td>
                                             <td>IMSS</td>
                                             <td>${{data.employeeImss}}</td>
@@ -259,7 +259,7 @@
                                             <td>${{data.subtotal}}</td>
                                         </tr>
                                         <!-- @if (Model.Isr != null && Model.Isr != 0) -->
-                                        {% if data.isr != None %}
+                                        {% if data.isr != None and data.isr != 0%}
                                         <tr>
                                             <td></td>
                                             <td>RETENCIONES</td>
@@ -267,7 +267,7 @@
                                         </tr>
                                         {% endif %}
                                         <!-- @if (Model.TotalDeductions != null) -->
-                                        {% if data.totalDeductions != None %}
+                                        {% if data.totalDeductions != None and data.totalDeductions != 0%}
                                         <tr>
                                             <td></td>
                                             <td>DESCUENTOS</td>
