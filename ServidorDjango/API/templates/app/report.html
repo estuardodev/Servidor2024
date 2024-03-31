@@ -205,25 +205,37 @@
                                         </tr>
                                         <!-- VALIDACION IF -->
                                         {% if data.isr %}
-                                        <tr>
-                                            <td>2</td>
-                                            <td>ISR</td>
-                                            <td>${{data.isr}}</td>
-                                        </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>ISR</td>
+                                                <td>${{data.isr}}</td>
+                                            </tr>
                                         {% endif %}
                                         <!-- VALIDACION IF -->
                                         <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
-                                        {% for deduction in data.extraDeductions %}
-                                            {% if deduction != None %}
-                                            <tr>
-                                                <td>{{forloop.counter}}</td>
-                                                <td>Deduccion extra</td>
-                                                <td>${{deduction}}</td>
-                                            </tr>
-                                            {% endif %}
-                                        {% endfor %}
+                                        {% if deduction != data.extraDeductions %}
+                                            {% for deduction in data.extraDeductions %}
+                                                {% if deduction != None %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>Deduccion extra</td>
+                                                    <td>${{deduction}}</td>
+                                                </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
                                         <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
-
+                                        {% if deduction != data.kitchenDeduction %}
+                                            {% for deduction in data.kitchenDeduction %}
+                                                {% if deduction != None %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>Deduccion de Cocina</td>
+                                                    <td>${{deduction}}</td>
+                                                </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
                                     </tbody>
                                 </table>
                             </div>

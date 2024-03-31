@@ -26,17 +26,27 @@ def export_pdf(request):
         data = json.loads(body)
         data = ConvertToListDict(data)
             
+
+        print(data[1]["kitchenDeduction"])
         for index in range(len(data)):
-            extraPerceptions:list = [value for value in data[index]["extraPerceptions"] if value is not None and value != ""]
-            data[index]["extraPerceptions"] = extraPerceptions
 
-            extraDeductions:list = [value for value in data[index]["extraDeductions"] if value is not None and value != ""]
-            data[index]["extraDeductions"] = extraDeductions
+            if data[index]["extraPerceptions"] != None:
+                extraPerceptions:list = [value for value in data[index]["extraPerceptions"] if value is not None and value != ""]
+                data[index]["extraPerceptions"] = extraPerceptions
 
+            if data[index]["extraPerceptions"] != None:
+                extraDeductions:list = [value for value in data[index]["extraDeductions"] if value is not None and value != ""]
+                data[index]["extraDeductions"] = extraDeductions
+
+            if data[index]["kitchenDeduction"] != None:
+                kitchenDeduction:list = [value for value in data[index]["kitchenDeduction"] if value is not None and value != ""]
+                data[index]["kitchenDeduction"] = kitchenDeduction
+            
             persepctions:list = data[index]["perceptions"].split(",")
             bonos:list = [i.split("$") for i in persepctions]
             data[index]["perceptions"] = bonos
 
+    
 
         context["datas"] = data
 
