@@ -144,6 +144,17 @@
                                             <td>${{data.seventhDay}}</td>
                                         </tr>
                                         {% endif %}
+
+                                        {% if data.hournotworked %}
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Horas no Cotizadas {{data.unquotedsalary}}</td>
+                                            <td>${{data.seventhDay}}</td>
+                                            <td>$0</td>
+                                            <td>${{data.hournotworked}}</td>
+                                        </tr>
+                                        {% endif %}
+
                                         <!-- iterar los bonos o perceptions si las horas trabajadas son mayor o igual a las horas fijas por semana -->
                                         {% for percepcion in data.perceptions %}
                                             <tr>

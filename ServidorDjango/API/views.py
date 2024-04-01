@@ -16,7 +16,7 @@ def ConvertToListDict(data) -> list:
     return datos
 
 @csrf_exempt
-def export_pdf(request):
+async def export_pdf(request):
     context:dict = {}
     if request.method != "POST" or not request.body:
         return HttpResponseBadRequest("Bad Request")
