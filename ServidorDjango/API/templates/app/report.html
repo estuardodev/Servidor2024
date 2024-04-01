@@ -145,16 +145,6 @@
                                         </tr>
                                         {% endif %}
 
-                                        {% if data.hournotworked %}
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Horas no Cotizadas {{data.unquotedsalary}}</td>
-                                            <td>${{data.seventhDay}}</td>
-                                            <td>$0</td>
-                                            <td>${{data.hournotworked}}</td>
-                                        </tr>
-                                        {% endif %}
-
                                         <!-- iterar los bonos o perceptions si las horas trabajadas son mayor o igual a las horas fijas por semana -->
                                         {% for percepcion in data.perceptions %}
                                             <tr>
@@ -207,21 +197,39 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            {% if data.employeeImss != None and data.employeeImss != 0%}
-                                            <td>1</td>
-                                            <td>IMSS</td>
-                                            <td>${{data.employeeImss}}</td>
-                                            {% endif %}
-                                        </tr>
-                                        <!-- VALIDACION IF -->
-                                        {% if data.isr %}
+                                        
+                                            
+                                        
+                                        {% with contador=0 %}
                                             <tr>
-                                                <td>2</td>
-                                                <td>ISR</td>
-                                                <td>${{data.isr}}</td>
+                                                {% if data.employeeImss != None and data.employeeImss != 0%}
+                                                    {% with contador=contador|add:1 %}
+                                                    <td>{{contador}}</td>
+                                                    <td>IMSS</td>
+                                                    <td>${{data.employeeImss}}</td>
+                                                    {% endwith %}
+                                                {% endif %}
                                             </tr>
-                                        {% endif %}
+                                            <!-- VALIDACION IF -->
+                                            {% if data.isr %}
+                                                {% with contador=contador|add:1 %}
+                                                <tr>
+                                                    <td>{{contador}}</td>
+                                                    <td>ISR</td>
+                                                    <td>${{data.isr}}</td>
+                                                </tr>
+                                                {% endwith %}                                            
+                                            {% endif %}
+                                            {% if data.hournotworked %}
+                                                {% with contador=contador|add:1 %}
+                                                <tr>
+                                                    <td>{{contador}}</td>
+                                                    <td>Horas no Cotizadas {{data.hournotworked}}</td>
+                                                    <td>${{data.unquotedsalary}}</td>
+                                                </tr>
+                                                {% endwith %}
+                                            {% endif %}
+                                        {% endwith %}
                                         <!-- VALIDACION IF -->
                                         <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
                                         {% if deduction != data.extraDeductions %}
