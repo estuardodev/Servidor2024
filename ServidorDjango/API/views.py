@@ -46,7 +46,7 @@ async def export_pdf(request):
                 persepctions:list = data[index]["perceptions"].split(",")
                 bonos:list = [i.split("$") for i in persepctions]
                 data[index]["perceptions"] = bonos
-    
+        context["counter"] = 0
         context["datas"] = data
         html:str = render_to_string("app/report.html", context)
         response = HttpResponse(content_type="application/pdf")
@@ -56,5 +56,5 @@ async def export_pdf(request):
 
         return response
     except KeyError as e:
-        template_name = render_to_string("app/error.html")
+        template_name = render_to_string("app/error.html", {"error": e})
         return HttpResponseServerError(template_name)

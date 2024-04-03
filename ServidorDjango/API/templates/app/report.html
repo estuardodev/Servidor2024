@@ -118,27 +118,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td style="background-color: royalblue; color: white;">0</td>
+                                            <td style="background-color: royalblue; color: white;">SALARIO BASE</td>
+                                            <td style="background-color: royalblue; color: white;">${{data.salary}}</td>
+                                            <td style="background-color: royalblue; color: white;">$0</td>
+                                            <td style="background-color: royalblue; color: white;">${{data.salary}}</td>
+                                        </tr>
                                         <!--si calculateSeventhDay es falso -->
                                         {% if data.calculateSeventhDay == False or data.calculateSeventhDay == None%}
                                         <tr>
-                                            <td>1</td>
-                                            <td>Sueldo Calculado</td>
-                                            <td>${{data.calculatedSalary}}</td>
-                                            <td>$0</td>
-                                            <td>${{data.calculatedSalary}}</td>
+                                            <td style="background-color: yellowgreen; color: white;">1</td>
+                                            <td style="background-color: yellowgreen; color: white;">Sueldo Calculado</td>
+                                            <td style="background-color: yellowgreen; color: white;">${{data.calculatedSalary}}</td>
+                                            <td style="background-color: yellowgreen; color: white;">$0</td>
+                                            <td style="background-color: yellowgreen; color: white;">${{data.calculatedSalary}}</td>
                                         </tr>
                                         {% else %}
                                         <!--si no mostrar el septimo dia  -->
                                         <tr>
-                                            <td>1</td>
-                                            <td>Sueldo Calculado</td>
-                                            <td>${{data.calculatedSalary}}</td>
-                                            <td>$0</td>
-                                            <td>${{data.calculatedSalary}}</td>
+                                            <td style="background-color: yellowgreen; color: white;">1</td>
+                                            <td style="background-color: yellowgreen; color: white;">Sueldo Calculado</td>
+                                            <td style="background-color: yellowgreen; color: white;">${{data.calculatedSalary}}</td>
+                                            <td style="background-color: yellowgreen; color: white;">$0</td>
+                                            <td style="background-color: yellowgreen; color: white;">${{data.calculatedSalary}}</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>septimo dia</td>
+                                            <td>Septimo día</td>
                                             <td>${{data.seventhDay}}</td>
                                             <td>$0</td>
                                             <td>${{data.seventhDay}}</td>
@@ -178,9 +185,9 @@
                                         <tr>
                                             <td></td>
                                             <td>TOTAL PERCEPCIONES Y PAGOS: </td>
-                                            <td>${{data.subtotal}}</td>
+                                            <td>${{data.totalPayments}}</td>
                                             <td></td>
-                                            <td>${{data.subtotal}}</td>
+                                            <td>${{data.totalPayments}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -196,40 +203,38 @@
                                             <th>Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody>           
+                                        {% if data.hournotworked %}
+                                                
+                                            <tr>
+                                                <td style="background-color: red; color: white;">1</td>
+                                                <td style="background-color: red; color: white;">Horas no Cotizadas {{data.hournotworked}}</td>
+                                                <td style="background-color: red; color: white;">${{data.unquotedsalary}}</td>
+                                            </tr>
                                         
-                                            
-                                        
-                                        {% with contador=0 %}
+                                        {% endif %}
+
                                             <tr>
                                                 {% if data.employeeImss != None and data.employeeImss != 0%}
-                                                    {% with contador=contador|add:1 %}
-                                                    <td>{{contador}}</td>
+                                                    
+                                                    <td>2</td>
                                                     <td>IMSS</td>
                                                     <td>${{data.employeeImss}}</td>
-                                                    {% endwith %}
+                                                    
                                                 {% endif %}
                                             </tr>
                                             <!-- VALIDACION IF -->
                                             {% if data.isr %}
-                                                {% with contador=contador|add:1 %}
+                                                
                                                 <tr>
-                                                    <td>{{contador}}</td>
+                                                    <td>3</td>
                                                     <td>ISR</td>
                                                     <td>${{data.isr}}</td>
                                                 </tr>
-                                                {% endwith %}                                            
+                                                                                         
                                             {% endif %}
-                                            {% if data.hournotworked %}
-                                                {% with contador=contador|add:1 %}
-                                                <tr>
-                                                    <td>{{contador}}</td>
-                                                    <td>Horas no Cotizadas {{data.hournotworked}}</td>
-                                                    <td>${{data.unquotedsalary}}</td>
-                                                </tr>
-                                                {% endwith %}
-                                            {% endif %}
-                                        {% endwith %}
+                                            
+                                        
                                         <!-- VALIDACION IF -->
                                         <!-- FORACH Y IF ITERAR SI EXTRADECUTION ES DIFERENTE DE NULO -->
                                         {% if deduction != data.extraDeductions %}
