@@ -12,7 +12,7 @@ resend==0.6.0
 requests==2.31.0
 django-hosts==5.2
 django-resized==1.0.2
-Pillow==10.2.0
+Pillow==10.3.0
 django-tinymce==3.6.1
 
 # Api 
