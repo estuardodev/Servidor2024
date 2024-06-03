@@ -9,7 +9,7 @@ whitenoise==6.2.0
 
 # Funcionalidades adicionales
 resend==0.6.0
-requests==2.31.0
+requests==2.32.0
 django-hosts==5.2
 django-resized==1.0.2
 Pillow==10.3.0
